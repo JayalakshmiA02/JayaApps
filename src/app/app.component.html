@@ -1,0 +1,18 @@
+<div class="container">
+  <h4>My Favs List <span> 
+    <button (click)="startRandomRating()">{{isRandomRating ? 'Stop Random' : 'Start Random'}}</button>
+  </span></h4>
+  <p *ngFor="let item of items | order : 'ratingAvg'">
+    <span>
+      {{item.name}}
+      <span class="ratings-avg">Rating: <span>{{item.ratingAvg}}({{item.noOfPerson}})</span></span>
+    </span>
+    <span>
+      Rate here: 
+      <select id="select{{item.id}}" (change)="ratingChanged($event, item)">
+        <option value=""></option>
+        <option *ngFor="let value of [1, 2, 3, 4, 5]" [value]="value">{{value}}</option>
+      </select>
+    </span>
+  </p>
+</div>
